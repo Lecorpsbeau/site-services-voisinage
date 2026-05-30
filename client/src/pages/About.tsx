@@ -39,7 +39,7 @@ export default function About() {
           </h2>
           <div className="text-sm text-[#5E5550] leading-relaxed space-y-3">
             <p>
-              Bonjour ! Moi c'est <strong>Augustin</strong>, j'ai 16 ans. Habitant de la région, j'ai décidé de mettre mon énergie, ma rigueur et mon sens de l'organisation au service de mon voisinage.
+              Bonjour ! Moi c'est <strong>Augustin</strong>, j'ai 17 ans. Habitant de l'Haÿ-les-Roses, j'ai décidé de mettre mon énergie, ma rigueur et mon sens de l'organisation au service de mon voisinage.
             </p>
             <p>
               Engagé depuis <strong>9 ans chez les Scouts et Guides de France</strong>, j'y ai développé des valeurs fortes : une grande autonomie, le sens des responsabilités, l'entraide et un esprit d'équipe à toute épreuve.
@@ -58,7 +58,7 @@ export default function About() {
             <div className="bg-white border border-amber-100 rounded-xl p-4 flex items-start gap-3 shadow-xs">
               <ShieldCheck className="h-5 w-5 text-rose-500 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-sm text-[#1E3F20]">Patient, calme & animateur (Baby-sitting)</h4>
+                <h4 className="font-bold text-sm text-[#1E3F20]">Patient, calme & animateur </h4>
                 <p className="text-xs text-[#5E5550] mt-1 leading-relaxed">
                   Actuellement en <strong>formation BAFA</strong> (première partie validée) et ayant encadré des enfants en club d'athlétisme, j'ai l'habitude de gérer, d'occuper et d'animer des groupes de primaires en toute sécurité et avec une grande patience.
                 </p>
