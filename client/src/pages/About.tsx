@@ -1,18 +1,18 @@
 import React from 'react';
 import { Button } from "../components/ui/button";
 import { ArrowLeft, User, CheckCircle2, ShieldCheck, Star } from "lucide-react";
+import { useLocation } from "wouter";
 
-interface AboutProps {
-  onBack: () => void;
-}
 
-export default function About({ onBack }: AboutProps) {
+export default function About() {
+  const [, setLocation] = useLocation(); //   Ce qu'il faut écrire
+
   return (
     <div className="min-h-screen bg-[#FAF6F0] text-[#2E2520] pb-12 flex flex-col font-sans p-4 max-w-md mx-auto">
       {/* Bouton Retour */}
       <div className="pt-4 pb-6">
         <Button
-          onClick={onBack}
+          onClick={() => setLocation("/")}
           variant="ghost"
           className="text-[#1E3F20] hover:bg-emerald-50/50 gap-2 pl-2 font-semibold text-sm"
         >

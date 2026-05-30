@@ -4,8 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { useLocation } from "wouter";
 
-// Liens de contact à personnaliser si nécessaire (par défaut, valeurs de démonstration)
+// Liens de contact à personnaliser si nécessaire
 const PHONE_NUMBER = "+33762302108";
 const WHATSAPP_LINK = "https://wa.me/33762302108?text=Bonjour%20Augustin,%20je%20souhaiterais%20en%20savoir%20plus%20sur%20vos%20services%20de%20proximit%C3%A9.";
 const EMAIL_ADDRESS = "augustin.courault@gmail.com";
@@ -23,7 +24,7 @@ const services = [
         title: "Aide au rangement / Organisation",
         description: "Tri complet, rangement optimisé et nettoyage de votre garage, cave, grenier ou abri de jardin.",
         price: "À partir de 10 € / heure",
-        targetId: "realisations" // Envoie vers la section globale des travaux
+        targetId: "realisations"
       },
       {
         title: "Petites réparations & Montage",
@@ -36,7 +37,7 @@ const services = [
   {
     category: "JARDINAGE & EXTÉRIEUR",
     color: "border-emerald-200 bg-emerald-50/40 text-emerald-900",
-    badgeColor: "bg-emerald-100 text-emerald-800",
+    badgeColor: "bg-emerald-100 text-amber-800",
     image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663707587211/5BokS7tBpE5YKNc5Am6ooH/service-garden-fqhRWZ66WcMBXspvkHwu2s.webp",
     items: [
       {
@@ -101,7 +102,6 @@ const services = [
   }
 ];
 
-// Éléments de confiance
 const argumentsConfiance = [
   {
     icon: <MapPin className="h-6 w-6 text-emerald-700 shrink-0" />,
@@ -121,6 +121,9 @@ const argumentsConfiance = [
 ];
 
 export default function Home() {
+  // 👈 LE HOOK EST BIEN PLACÉ ICI À L'INTÉRIEUR DU COMPOSANT
+  const [, setLocation] = useLocation();
+
   return (
     <div className="min-h-screen bg-[#FAF6F0] text-[#2E2520] pb-12 flex flex-col font-sans selection:bg-emerald-100 selection:text-emerald-900">
       <header className="relative overflow-hidden bg-gradient-to-b from-amber-50/60 to-transparent pt-8 pb-12">
@@ -143,7 +146,16 @@ export default function Home() {
 
           {/* Boutons d'action principaux (CTA) */}
           <div className="flex flex-col gap-3 max-w-xs mx-auto">
-            {/* CTA Téléphone - Gros bouton */}
+            {/* 👈 LE BOUTON INTERACTIF "QUI SUIS-JE" TROUVE SA PLACE ICI */}
+            <Button
+              onClick={() => setLocation("/about")}
+              variant="outline"
+              className="w-full py-6 text-base font-bold bg-white hover:bg-[#FAF6F0] text-[#1E3F20] border-2 border-[#1E3F20] rounded-xl shadow-sm transition-all active:scale-[0.97] duration-150 flex items-center justify-center gap-2 mb-2"
+            >
+              ✨ Découvrir qui je suis (Qui suis-je ?)
+            </Button>
+
+            {/* CTA Téléphone */}
             <Button
               asChild
               className="w-full py-6 text-base font-bold bg-[#1E3F20] hover:bg-[#1E3F20]/90 text-[#FAF6F0] rounded-xl shadow-md hover:shadow-lg transition-all active:scale-[0.97] duration-150 flex items-center justify-center gap-3 border border-emerald-950"
@@ -154,7 +166,7 @@ export default function Home() {
               </a>
             </Button>
 
-            {/* CTA WhatsApp - Gros bouton vert WhatsApp */}
+            {/* CTA WhatsApp */}
             <Button
               asChild
               variant="outline"
@@ -166,7 +178,7 @@ export default function Home() {
               </a>
             </Button>
 
-            {/* CTA E-mail - Gros bouton terracotta */}
+            {/* CTA E-mail */}
             <Button
               asChild
               className="w-full py-6 text-base font-bold bg-[#C86446] hover:bg-[#C86446]/90 text-[#FAF6F0] rounded-xl shadow-md hover:shadow-lg transition-all active:scale-[0.97] duration-150 flex items-center justify-center gap-3 border border-[#B04C30]"
@@ -193,7 +205,6 @@ export default function Home() {
         <div className="space-y-8">
           {services.map((section, idx) => (
             <section key={idx} className="space-y-4">
-              {/* En-tête de catégorie */}
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl overflow-hidden bg-white border border-amber-100 shrink-0 shadow-xs">
                   <img src={section.image} alt={section.category} className="w-full h-full object-cover" />
@@ -208,7 +219,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Cartes des sous-services */}
               <div className="space-y-3">
                 {section.items.map((item, itemIdx) => (
                   <Card key={itemIdx} className="border border-[#FAF6F0] bg-white rounded-xl overflow-hidden shadow-xs hover:shadow-sm transition-all duration-200">
@@ -222,7 +232,6 @@ export default function Home() {
                         </p>
                       </div>
 
-                      {/* Prix en évidence */}
                       <div className="flex items-center justify-between pt-2 border-t border-amber-50/80">
                         <span className="text-xs text-[#8E8580] font-medium">Mon tarif :</span>
                         <Badge className="bg-emerald-50 hover:bg-emerald-50 text-[#1E3F20] border border-emerald-100 text-xs font-bold px-3 py-1 rounded-lg">
@@ -245,7 +254,6 @@ export default function Home() {
             </section>
           ))}
         </div>
-        {/* Fin de la div space-y-8 des services */}
 
         <section id="realisations" className="mt-16 scroll-mt-6 space-y-6">
           <div className="flex items-center justify-between">
@@ -256,7 +264,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {/* Carte Travail 1 */}
             <Card className="border border-amber-100 bg-white rounded-xl overflow-hidden shadow-xs">
               <div className="aspect-square bg-amber-50 relative overflow-hidden">
                 <img src="/jardin1.jpg" alt="Tonte pelouse" className="w-full h-full object-cover" />
@@ -266,7 +273,6 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            {/* Carte Travail 2 */}
             <Card className="border border-amber-100 bg-white rounded-xl overflow-hidden shadow-xs">
               <div className="aspect-square bg-amber-50 relative overflow-hidden">
                 <img src="/karcher1.jpg" alt="Nettoyage terrasse" className="w-full h-full object-cover" />
@@ -279,7 +285,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. SECTION "POURQUOI FAIRE APPEL À MOI ?" */}
         <section className="mt-16 bg-white/60 border border-amber-100 rounded-2xl p-6 shadow-xs space-y-6">
           <div className="text-center space-y-1">
             <h2 className="text-xl font-bold text-[#1E3F20]">Pourquoi faire appel à moi ?</h2>
@@ -299,7 +304,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
         </section>
       </main>
 
@@ -330,10 +334,9 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* FOOTER ZONE D'ACTION FIXE (STICKY BOTTOM MOBILE CTA) */}
+      {/* STICKY BOTTOM MOBILE CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-t border-amber-100/80 shadow-[0_-4px_12px_rgba(46,37,32,0.05)] py-3 px-4 sm:px-6">
         <div className="max-w-md mx-auto flex gap-3">
-          {/* Bouton d'appel rapide collé au pouce */}
           <Button
             asChild
             className="flex-1 py-5 text-sm font-bold bg-[#1E3F20] hover:bg-[#1E3F20]/90 text-[#FAF6F0] rounded-xl shadow-xs transition-all active:scale-[0.97] duration-150 flex items-center justify-center gap-2 border border-emerald-950"
@@ -344,7 +347,6 @@ export default function Home() {
             </a>
           </Button>
 
-          {/* Bouton WhatsApp rapide collé au pouce */}
           <Button
             asChild
             variant="outline"
@@ -356,7 +358,6 @@ export default function Home() {
             </a>
           </Button>
 
-          {/* Bouton E-mail rapide collé au pouce */}
           <Button
             asChild
             variant="outline"
