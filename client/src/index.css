@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius: 1rem;
+  --background: oklch(0.98 0.01 85); /* Crème très doux #FAF6F0 */
+  --foreground: oklch(0.20 0.02 70); /* Brun foncé très lisible #2E2520 */
+  --card: oklch(1.0 0.005 85); /* Blanc cassé encore plus doux */
+  --card-foreground: oklch(0.20 0.02 70);
+  --border: oklch(0.90 0.01 85); /* Bordure crème un peu plus sombre */
+}
+
+:root {
+  --primary: oklch(0.35 0.08 140); /* Vert forêt chaleureux #1E3F20 */
+  --primary-foreground: oklch(0.98 0.01 85);
+  --radius: 1rem;
+  --background: oklch(0.98 0.01 85);
+  --foreground: oklch(0.20 0.02 70);
+  --card: oklch(1.0 0.005 85);
+  --card-foreground: oklch(0.20 0.02 70);
+  --popover: oklch(1.0 0.005 85);
+  --popover-foreground: oklch(0.20 0.02 70);
+  --secondary: oklch(0.60 0.15 45); /* Terracotta doux #C86446 */
+  --secondary-foreground: oklch(0.98 0.01 85);
+  --muted: oklch(0.94 0.015 85);
+  --muted-foreground: oklch(0.45 0.02 70);
+  --accent: oklch(0.92 0.02 85);
+  --accent-foreground: oklch(0.20 0.02 70);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.90 0.01 85);
+  --input: oklch(0.90 0.01 85);
+  --ring: oklch(0.35 0.08 140);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', serif;
+    @apply font-semibold tracking-tight;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 640px; /* Centré et optimisé pour format mobile sur desktop */
+    }
+  }
+}
